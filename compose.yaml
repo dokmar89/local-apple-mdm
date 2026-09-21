@@ -1,0 +1,25 @@
+services:
+  mdm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "443:8443"
+    volumes:
+      - ./ca/server.key:/app/ca/server.key:ro
+      - ./ca/server.crt:/app/ca/server.crt:ro
+      - ./ca/root-ca.crt:/app/ca/root-ca.crt:ro
+      - ./ca/iphone.mobileconfig:/app/ca/iphone.mobileconfig:ro
+      - ./ca/apns/push-cert.pem:/app/ca/apns/push-cert.pem:ro
+      - ./ca/apns/push-key.pem:/app/ca/apns/push-key.pem:ro
+      - ./data:/app/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

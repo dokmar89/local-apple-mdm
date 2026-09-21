@@ -1,0 +1,9 @@
+node_modules/
+dist/
+ca/
+data/
+.env
+*.mobileconfig
+tests/fixtures/captured/
+coverage/
+tools/

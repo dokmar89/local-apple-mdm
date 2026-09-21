@@ -1,0 +1,43 @@
+{
+  "name": "local-apple-mdm",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "scripts": {
+    "dev": "npm run build && node --env-file-if-exists=.env dist/src/server.js",
+    "build": "tsc --noEmitOnError",
+    "start": "node --env-file-if-exists=.env dist/src/server.js",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && vitest run tests",
+    "profile": "node --env-file-if-exists=.env --import tsx scripts/make-profile.ts",
+    "push": "node --env-file-if-exists=.env --import tsx scripts/push.ts",
+    "mdm": "node --env-file-if-exists=.env --import tsx scripts/mdm.ts",
+    "simulate": "node --env-file-if-exists=.env --import tsx scripts/simulate.ts",
+    "format": "prettier --write src scripts tests package.json tsconfig.json",
+    "audit": "npm audit",
+    "mdmcert": "node --env-file-if-exists=.env --import tsx scripts/mdmcert-request.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.2.0",
+    "bplist-parser": "0.3.2",
+    "drizzle-orm": "0.45.2",
+    "fastify": "5.12.4",
+    "node-forge": "1.4.0",
+    "pino": "9.9.0",
+    "plist": "3.1.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "7.6.13",
+    "@types/node": "22.17.0",
+    "@types/node-forge": "1.3.13",
+    "@types/plist": "3.0.5",
+    "prettier": "3.6.2",
+    "tsx": "4.20.3",
+    "typescript": "5.9.2",
+    "vitest": "4.1.11"
+  }
+}
